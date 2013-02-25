@@ -53,31 +53,59 @@ end
 Rec.Reset;
 tin_thislevel  = tic;
 
-LevelStep = 1; PauseOnLevel = 120;
+LevelStep = 1; PauseOnLevel = 90;
 HaveFix = 0;
-k = 0;
-
+k = 1;
+RecIsDead5sec = 0;
+RecOkOnLastStep = 0;
+Pow_arr = cell(1,1);
+p = 1;
 while (1)
     
     Rec.GetSolutionStatus;
     
     if (Rec.FixType == 3)
+        RecOkOnLastStep = 1;
         HaveFix = 1;
-        if (toc(tin_thislevel) > 120)
+        if (toc(tin_thislevel) > PauseOnLevel)
             LastOkLevel = SMBV.Level;
-            SMBV.setLevel(LastOkLevel - LevelStep);
-            tin_thislevel = tic; 
-        end
-    elseif (Rec.FixType == 1) 
-        if (HaveFix == 1)
-            DeathTime = tic;
-            if (toc(DeathTime) > 5)
-                ResultLevel(k) = LastOkLevel;
-                k = k + 1;
-                Rec.Reset;
-                HaveFix = 0;
+            Pow_arr{p,1} = [LastOkLevel 1];
+            p = p + 1;
+            if (LastOkLevel <= -111 && LastOkLevel >= -128) 
+                LevelStep = LevelStep * 6;
+            elseif (LastOkLevel <= -128 && LastOkLevel >= -133)
+                LevelStep = LevelStep * 2;
+            elseif (LastOkLevel <= -133 && LastOkLevel >= -139)
+                LevelStep = LevelStep * 0.5;
             end
+            SMBV.setLevel(LastOkLevel - LevelStep);
+            tin_thislevel = tic;
         end
+    elseif (Rec.FixType == 1 && RecOkOnLastStep == 1 )
+        DeathTime = tic;
+        RecOkOnLastStep = 0;
     end
     
+    if (Rec.FixType == 1 && HaveFix == 1 )
+    if ( toc(DeathTime) > 5 )
+        RecIsDead5sec = 1;
+    else
+        RecIsDead5sec = 0;
+    end
+    end
+    
+    if (RecIsDead5sec == 1)
+        ResultLevel(k) = LastOkLevel;
+        k = k + 1;
+        Pow_arr{p-1,1} = [LastOkLevel 0];
+        Rec.Reset;
+        SMBV.setLevel(StartLevel);
+        HaveFix = 0;
+        RecOkOnLastStep = 0;
+        RecIsDead5sec = 0;
+        tin_thislevel  = tic;
+    end
+  
 end
+
+
