@@ -5,7 +5,7 @@ close all
 SMBV = CSMBV;
 Rec = CReceiver;
 
-[Stat] = SMBV.setConnection('192.168.0.30',5025);
+[Stat] = SMBV.setConnection('192.168.1.22',5025);
 if (Stat == 0)
     error('Connection problem')
 end
@@ -43,7 +43,7 @@ if (Stat == 0)
     error('Error')
 end
 
-Rec.SerialConfig('COM4',115200);
+Rec.SerialConfig('COM7',115200);
 
 Stat = Rec.SerialConnect;
 if (Stat == 0)
@@ -71,12 +71,10 @@ while (1)
             LastOkLevel = SMBV.Level;
             Pow_arr{p,1} = [LastOkLevel 1];
             p = p + 1;
-            if (LastOkLevel <= -111 && LastOkLevel >= -128) 
-                LevelStep = LevelStep * 6;
-            elseif (LastOkLevel <= -128 && LastOkLevel >= -133)
-                LevelStep = LevelStep * 2;
-            elseif (LastOkLevel <= -133 && LastOkLevel >= -139)
-                LevelStep = LevelStep * 0.5;
+            if (LastOkLevel <= -111 && LastOkLevel >= -129) 
+                LevelStep = 6;
+            elseif (LastOkLevel <= -135 && LastOkLevel >= -145)
+                LevelStep = 0.5;
             end
             SMBV.setLevel(LastOkLevel - LevelStep);
             tin_thislevel = tic;
@@ -97,7 +95,8 @@ while (1)
     if (RecIsDead5sec == 1)
         ResultLevel(k) = LastOkLevel;
         k = k + 1;
-        Pow_arr{p-1,1} = [LastOkLevel 0];
+        Pow_arr{p,1} = [(LastOkLevel - LevelStep) 0];
+        p = p + 1;
         Rec.Reset;
         SMBV.setLevel(StartLevel);
         HaveFix = 0;
