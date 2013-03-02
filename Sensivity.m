@@ -55,7 +55,7 @@ k = 1;
 RecIsDead5sec = 0;
 RecOkOnLastStep = 0;
 Pow_arr = cell(1,1);
-p = 1;
+p = 0;
 m = 0;
 while (1)
     
@@ -66,8 +66,8 @@ while (1)
         HaveFix = 1;
         if (toc(tin_thislevel) > PauseOnLevel)
             LastOkLevel = SMBV.Level;
-            Pow_arr{p,1} = [LastOkLevel 1];
             p = p + 1;
+            Pow_arr{p,1} = [LastOkLevel 1];
             if (LastOkLevel <= -111 && LastOkLevel >= -128) 
                 LevelStep = 6;
             elseif (LastOkLevel == -129)
@@ -102,12 +102,12 @@ while (1)
         file = [num2str(m) 'newpower.mat'];
         save(file, 'Pow_arr');
         m = m + 1;
-        Rec.Reset;
         SMBV.setLevel(StartLevel);
         HaveFix = 0;
         RecOkOnLastStep = 0;
         RecIsDead5sec = 0;
         tin_thislevel  = tic;
+        Rec.Reset;
         toc(DeathTime);
     end
   

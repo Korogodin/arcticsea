@@ -1,61 +1,101 @@
+%*
+%* @file
+%* @author  Vladimir Dneprov <vvdneprov@gmail.com>  
+%* Moscow Power Engineering Institute
+%* 
+%* @section LICENSE
+%*
+%* This program is free software; you can redistribute it and/or
+%* modify it under the terms of the GNU General Public License as
+%* published by the Free Software Foundation; either version 2 of
+%* the License, or (at your option) any later version.
+%*
+%* This program is distributed in the hope that it will be useful, but
+%* WITHOUT ANY WARRANTY; without even the implied warranty of
+%* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+%* General Public License for more details at
+%* http://www.gnu.org/copyleft/gpl.html
+%*
+%* @section DESCRIPTION
+%*
+%* Class for Rohde&Schwarz FSV signal & spectrum analyzers
+%* Features:
+%* 1) Bandwidth power measurement
+
 classdef CFSV < handle
-    %UNTITLED Summary of this class goes here
-    %   Detailed explanation goes here
+    %CFSV Class for Rohde&Schwarz FSV signal & spectrum analyzers
     
     properties
-        Instr
-        Span
-        CenterFreq
+        Instr % Pointer of TCP/IP connection
+        Span % Band for power measurement
+        CenterFreq % Central frequency for power measurement
     end
     
     methods
-        %конструктор
-        function RS = CFSV
+
+
+        %*Consturctor of this class
+        %*
+        %*This is constructor of FSV control class
+        %*Example: FSV3 = CFSV();
+        %*
+        %*@return RS Object of this class
+        function RS = CFSV()
             
         end
-        %установка соединения
-        function [Status] = setConnection(RS, IP, port)
+        
+        %*Connect to measurement unit by local network
+        %*
+        %*@param IP IP-address of measurement unit
+        %*@param port Port for TCP/IP connection, usually 5025
+        %*@return Status Is 0 - fail; 1 - ok.
+        function Status = setConnection(RS, IP, port)
             Status = 0;
             RS.Instr = tcpip(IP, port);
             %set(RS.Instr, InputBufferSize, 2000);
             %set(RS.Instr, OutputBufferSize, 2000);
             fopen(RS.Instr);
             if  strcmp(get(RS.Instr,'Status'),'open')
-                disp('Connection OK');
+                fprintf('FSV:Connection OK');
                 Status = 1;
             else
-                disp('Connection Problem');
+                fprintf('FSV:Connection Problem');
             end
         end
         
-        %закрытие соединения с возвратом к ручному управлению
-        function closeConnection(RS)
+        %*Close connection and return to manual control
+        %*
+        %*@return Status Returns a status of 0 when the close operation is successful. Otherwise, it returns -1
+        function Status = closeConnection(RS)
             fprintf(RS.Instr,'&GTL');
-            fclose(RS.Instr);
+            Status = fclose(RS.Instr);
         end
         
-        %Отправка команды
+        %*Send SCPI command to FSV
+        %*
+        %*@param strCommand String of SCPI command
+        %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
         function [Status] = sendCommand(RS, strCommand)
             Status = 0;
-            % проверка количества входных аргументов
+            % Check number of input args
             if( nargin ~= 2 )
                 disp( '*** Wrong number of input arguments' )
                 return;
             end
             
-            % проверка 1го параметра
+            % Check first parameter
             if( isobject(RS) ~= 1 )
                 disp( '*** The first parameter is not an object.' );
                 return;
             end
             
-            % проверка 2го параметра
+            % Check second parameter
             if( isempty(strCommand) || (ischar(strCommand)~= 1) )
                 disp ('*** Command string is empty or not a string.');
                 return;
             end
             
-            %Собственно отправка команды
+            % Command sending
             fprintf (RS.Instr, strCommand);
             Error = queryError(RS);
             if (Error==1)
@@ -64,43 +104,49 @@ classdef CFSV < handle
             Status = 1;
         end
         
-        %Отправка запроса и получение ответа
+        %*Send request for answer
+        %*
+        %*@param strCommand String of SCPI command
+        %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
+        %*@return Result Returns a answer of FSV
         function [Status, Result] = sendQuery(RS, strCommand)
             Status = 0;
             Result = '';
             
-            % проверка количества входных аргументов
+            % Check number of input args
             if( nargin ~= 2 )
                 disp( '*** Wrong number of input arguments' )
                 return;
             end
             
-            % проверка 1го параметра
+            % Check first parameter
             if( isobject(RS) ~= 1 )
                 disp( '*** The first parameter is not an object.' );
                 return;
             end
             
-            % проверка 2го параметра
+            % Check second parameter
             if( isempty(strCommand) || (ischar(strCommand)~= 1) )
                 disp ('*** Command string is empty or not a string.');
                 return;
             end
             
-            % Проверка, есть ли в команде запрос
+            % Check: is strCommand the question?
             if( isempty( strfind(strCommand, '?' ) ) )
                 disp( '*** Queries must end with a question mark.' );
                 return;
             end
             
-            % Отправка запроса и получение результата
+            % Send request and receive answer
             fprintf (RS.Instr, strCommand);
             Result = fscanf(RS.Instr, '%c');
             Status = 1;
             
         end
         
-        %опрос на предмет ошибок
+        %*Check errors in FSV
+        %*
+        %*@return Err Instrument error
         function [Err] = queryError(RS)
             Result = '1';
             Counter = 0;
@@ -122,7 +168,10 @@ classdef CFSV < handle
             end
         end
         
-        %Установка центральной частоты
+        %*Set central frequency in power measurement mode
+        %*
+        %*@param Freq Central frequency, Hz?
+        %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
         function [Status] = SetCenterFreq(RS, Freq)
             Status = 0;
             if (ischar(Freq))
@@ -139,7 +188,10 @@ classdef CFSV < handle
            Status = 1;
         end
         
-        %Установка полосы
+        %*Set bandwidth in power measurement mode
+        %*
+        %*@param Span Bandwidth, Hz?
+        %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
         function [Status] = SetSpan(RS, Span)
             Status = 0;
             if (ischar(Span))
@@ -156,7 +208,11 @@ classdef CFSV < handle
             Status = 1;
         end
         
-        %Измерение мощности в полосе
+        %*Get power in bandwith
+        %*
+        %*@param TXCHCount ???
+        %*@param CHANSpan ???
+        %*@return measure Power in bandwith, dBm?
         function [measure] = PowerMeasure(RS, TXCHCount, CHANSpan)
             RS.sendCommand(sprintf('SENS:POW:ACH:TXCH:COUNT %i', TXCHCount));
             if (ischar(CHANSpan))
