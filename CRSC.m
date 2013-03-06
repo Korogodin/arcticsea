@@ -1,8 +1,8 @@
 %*
 %* @file
-%* @author  Vladimir Dneprov <vvdneprov@gmail.com>  
+%* @author  Vladimir Dneprov <vvdneprov@gmail.com>
 %* Moscow Power Engineering Institute
-%* 
+%*
 %* @section LICENSE
 %*
 %* This program is free software; you can redistribute it and/or
@@ -18,52 +18,52 @@
 %*
 %* @section DESCRIPTION
 %*
-%* Class for Rohde&Schwarz SMBV100A vector signal generator
+%* Class for Rohde&Schwarz RSC attenuator
 %* Features:
-%* 1) Set up output power  
-%* 2) Set up carrier frequency
-%* 3) Simulate GPS signals of the given number of satellites
+%* 1) Set up attenuation
 
 
-classdef CSMBV < handle
-    %CSMBV Class for Rohde&Schwarz SMBV100A vector signal generator
+classdef CRSC < handle
+    %CRSC Class for Rohde&Schwarz RSC attenuator
     
     properties
-        Freq  % Frequency of the carrier Hz
-        Level % Output power dBm
         Instr % Pointer of TCP/IP connection
+        Attenuation % Attenuation dB
     end
     
     methods
+        
+        
         %*Consturctor of this class
         %*
-        %*This is constructor of SMBV control class
-        %*Example: SMBV1 = CSMBV;
+        %*This is constructor of RSC control class
+        %*Example: RSC3 = CRSC;
         %*
         %*@return RS Object of this class
-        function RS = CSMBV
+        function RS = CRSC
             
         end
+        
         %*Connect to unit by local network
         %*
-        %*@param IP String IP-address of unit
+        %*@param IP String IP-address of measurement unit
         %*@param port Port for TCP/IP connection, usually 5025
         %*@return Status Is 0 - fail; 1 - ok.
         function Status = SetConnection(RS, IP, port)
             Status = 0;
             RS.Instr = tcpip(IP, port);
-             
-            %Uncomment to change tcpip object's R/W buffer size. 
+            
+            %Uncomment to change tcpip object's R/W buffer size.
             %Default = 512 bytes
             %set(RS.Instr, InputBufferSize, 2000);
             %set(RS.Instr, OutputBufferSize, 2000);
-                                                   
+            
             fopen(RS.Instr);
             if  strcmp(get(RS.Instr,'Status'),'open')
-                fprintf('SMBV:Connection OK');
+                fprintf('RSC:Connection OK');
                 Status = 1;
             else
-                fprintf('SMBV:Connection Problem');
+                fprintf('RSC:Connection Problem');
             end
         end
         
@@ -75,7 +75,7 @@ classdef CSMBV < handle
             Status = fclose(RS.Instr);
         end
         
-        %*Send SCPI command to SMBV
+        %*Send SCPI command to RSC
         %*
         %*@param strCommand String of SCPI command
         %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
@@ -112,7 +112,7 @@ classdef CSMBV < handle
         %*
         %*@param strCommand String of SCPI command
         %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
-        %*@return Result Returns a answer of SMBV
+        %*@return Result Returns an answer of FSV
         function [Status, Result] = SendQuery(RS, strCommand)
             Status = 0;
             Result = '';
@@ -144,9 +144,9 @@ classdef CSMBV < handle
             % Send request and receive answer
             fprintf (RS.Instr, strCommand);
             Result = fscanf(RS.Instr, '%c');
-            Status = 1;         
+            Status = 1;
         end
-
+        
         %*Get information about instrument
         %*
         %*@return IDN String information about instrument
@@ -176,10 +176,10 @@ classdef CSMBV < handle
             end
             Status = 1;
         end
-       
-        %*Check errors in SMBV
+        
+        %*Check errors in RSC
         %*
-        %*@return Err Instrument error
+        %*@return Err Returns Err = 1 instrument error occured, 0 no error
         function [Err] = QueryError(RS)
             Result = '1';
             Counter = 0;
@@ -191,7 +191,6 @@ classdef CSMBV < handle
                 if (status == 0)
                     disp( '*** Error occurred' );
                     Err = 1;
-                    break;
                 end
                 if (Result(1)~='0')
                     disp (['*** Instrument Error: ' Result]);
@@ -200,146 +199,20 @@ classdef CSMBV < handle
                 Counter = Counter + 1;
             end
         end
-       
-        %*Set the output power level
+        
+        %*Set the attenuation
         %*
-        %*@param Level Output power level, dBm
+        %*@param ATT attenuation dB
         %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
-        function [Status] = SetLevel(RS, Level)
-           Status = 0;
-           RS.Level = Level;
-           [Stat] = RS.SendCommand(sprintf('SOUR:POW %.1f', Level));
-           if (Stat == 0)
-               return;
-           end
-           Status = 1;
-       end
-       
-        %*Set the frequency of the carrier
-        %*
-        %*@param Freq Frequency of the carrier. Freq can be String 10GHz or float(Hz) 10.12345E9
-        %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
-       function [Status] = SetFreq(RS, Freq)
-           Status = 0;
-           if (ischar(Freq))
-               [Stat] = RS.SendCommand(['SOUR:FREQ ' Freq]);
-               RS.Freq = str2num(Freq);
-               if ( Stat == 0)
-                   return;
-               end
-           else
-               [Stat] = RS.SendCommand(sprintf('SOUR:FREQ %.5f', Freq));
-               RS.Freq = Freq;
-               if (Stat == 0)
-                   return;
-               end
-           end
-           RS.CenterFreq = Freq;
-           Status = 1;
-       end
-       
-       %*Set the RF output ON/OFF
-       %*
-       %*@param State String ON/OFF
-       %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
-       function [Status] = SetRFOutput(RS, State)
-           Status = 0;
-           if (ischar(State))
-               [Stat] = RS.SendCommand(['OUTP ' State]);
-               if (Stat == 0)
-                   return;
-               end
-           else
-               disp('Output state is string ON/OFF');
-               return;
-           end
-           Status = 1;
-       end
-      
-        %*Simulate signals of several GPS satellites, satellite signal power is the same, 
-        %*the frequency range is L1, location - Moscow
-        %*
-        %*@param SatNumber Integer number of satellites
-        %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
-       function [Status] = SetGPS(RS, SatNumber)
-           Status = 0;
-%           RS.RefPoW = RefPow;
-          [Stat] = RS.SendCommand('SOUR:BB:GPS:PRES');
-          if (Stat == 0)
-              return;
-          end
-          [Stat, result] = RS.SendQuery('*OPC?');
-          if (Stat == 0 || result(1)~='1')
-              return;
-          end
-          [Stat] = RS.SendCommand('SOUR:BB:GPS:STAT OFF');
-          if (Stat == 0)
-              return;
-          end
-          [Stat] = RS.SendCommand('SOUR:BB:GPS:SMODE USER');
-          if (Stat == 0)
-              return;
-          end
-          [Stat] = RS.SendCommand('SOUR:BB:GPS:LOC:SEL "Moscow"');
-          if (Stat == 0)
-              return;
-          end
-%           [status] = RS.sendCommand(sprintf('SOUR:BB:GPS:POWER:REF %.1f', RefPow));
-%           if (status<0)
-%               return;
-%           end
-          
-          [Stat] = RS.SendCommand(sprintf('BB:GPS:SAT:COUN %i', SatNumber));
-          if (Stat == 0)
-              return;
-          end
-          [Stat] = RS.SendCommand('SOUR:BB:GPS:GOC');
-          if (Stat == 0)
-              return;
-          end
-          [Stat, result] = RS.SendQuery('*OPC?');
-          if (Stat == 0 || result(1)~='1')
-              return;
-          end
-          [Error] = RS.QueryError;
-          if (Error == 1)
-              return;
-          end
-          
-          [Stat] = RS.SendCommand('SOUR:BB:GPS:STAT ON');
-          if (Stat == 0)
-              return;
-          end
-          
-          progress = '0';
-          [Stat, progress] = RS.SendQuery('SOUR:BB:PROG:MCOD?');
-          if (Stat == 0)
-              return;
-          end
-          while (str2num(progress) ~= 100)
-              [Stat, progress] = RS.SendQuery('SOUR:BB:PROG:MCOD?');
-              if (Stat == 0)
-                  return;
-              end
-          end
-          
-          [Stat, result] = RS.SendQuery('*OPC?');
-          if (Stat == 0 || result(1)~='1')
-              return;
-          end
-          
-          [Stat] = RS.SendCommand('BB:GPS:TRIGger:EXECute');
-          if (Stat == 0)
-              return;
-          end
-
-          [Error] = RS.QueryError;
-          if (Error == 1)
-              return;
-          end
-          Status = 1;
-       end
-
+        function [Status] = SetAttenuation(RS, ATT)
+            Status = 0;
+            [Stat] = RS.SendCommand(sprintf('ATT1:ATT %.2f', ATT));
+            if ( Stat == 0)
+                return;
+            end
+            RS.Attenuation = ATT;
+            Status = 1;
+        end
     end
     
 end
