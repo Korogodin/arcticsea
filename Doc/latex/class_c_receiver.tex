@@ -1,0 +1,155 @@
+\hypertarget{class_c_receiver}{\section{C\-Receiver Class Reference}
+\label{class_c_receiver}\index{C\-Receiver@{C\-Receiver}}
+}
+
+
+Class to work with navigation receiver via serial port.  
+
+
+Inheritance diagram for C\-Receiver\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_receiver}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+function \hyperlink{class_c_receiver_a6056c0c1f4f2ce1306e5068cafc27231}{C\-Receiver} ()
+\begin{DoxyCompactList}\small\item\em Consturctor of this class. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_receiver_abb26454266315d70b8cd980440131b2c}{Serial\-Config} (in R\-C\-V, in C\-O\-M, in Baud)
+\begin{DoxyCompactList}\small\item\em Set parameters of serial port. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_receiver_a1d8dc5af14b27f0abc720e0bc60e5903}{Serial\-Connect} (in R\-C\-V)
+\begin{DoxyCompactList}\small\item\em Connect to receiver by serial port. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_receiver_a05982a8b657d04cebc74f39a6737a523}{Recieve\-String} (in R\-C\-V)
+\begin{DoxyCompactList}\small\item\em Read data from receiver. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_receiver_a998ae45117346e1ab1fb5511d5fe295d}{Serial\-Close} (in R\-C\-V)
+\begin{DoxyCompactList}\small\item\em Close connection to receiver. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_receiver_a24d9be27941e8c593a588df56f0cafe1}{Reset} (in R\-C\-V)
+\begin{DoxyCompactList}\small\item\em Reset receiver ( N\-M\-E\-A string is true for G\-E\-O\-S-\/3 ) \end{DoxyCompactList}\item 
+function \hyperlink{class_c_receiver_a18db451b4401eafbd75f549b880426b6}{Get\-Solution\-Status} (in R\-C\-V)
+\begin{DoxyCompactList}\small\item\em Get solution status and store it in Fix\-Type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_c_receiver_aa183133c9a503dedcbc649d94a01c95f}{Property \hyperlink{class_c_receiver_aa183133c9a503dedcbc649d94a01c95f}{obj}}\label{class_c_receiver_aa183133c9a503dedcbc649d94a01c95f}
+
+\begin{DoxyCompactList}\small\item\em Pointer of serial connection. \end{DoxyCompactList}\item 
+\hypertarget{class_c_receiver_a545e0896a323d38b6eec4fc756628f0b}{Property \hyperlink{class_c_receiver_a545e0896a323d38b6eec4fc756628f0b}{Fix\-Type}}\label{class_c_receiver_a545e0896a323d38b6eec4fc756628f0b}
+
+\begin{DoxyCompactList}\small\item\em Type of solution (1 -\/ No solution, 2 -\/ 2\-D, 3 -\/ 3\-D) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class to work with navigation receiver via serial port. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_c_receiver_a6056c0c1f4f2ce1306e5068cafc27231}{\index{C\-Receiver@{C\-Receiver}!C\-Receiver@{C\-Receiver}}
+\index{C\-Receiver@{C\-Receiver}!CReceiver@{C\-Receiver}}
+\subsubsection[{C\-Receiver}]{\setlength{\rightskip}{0pt plus 5cm}function C\-Receiver\-::\-C\-Receiver (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_c_receiver_a6056c0c1f4f2ce1306e5068cafc27231}
+
+
+Consturctor of this class. 
+
+This is constructor of Receiver control class\par
+ Example\-: Rec1 = \hyperlink{class_c_receiver}{C\-Receiver};
+
+\begin{DoxyReturn}{Returns}
+R\-C\-V Object of this class 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_c_receiver_a18db451b4401eafbd75f549b880426b6}{\index{C\-Receiver@{C\-Receiver}!Get\-Solution\-Status@{Get\-Solution\-Status}}
+\index{Get\-Solution\-Status@{Get\-Solution\-Status}!CReceiver@{C\-Receiver}}
+\subsubsection[{Get\-Solution\-Status}]{\setlength{\rightskip}{0pt plus 5cm}function C\-Receiver\-::\-Get\-Solution\-Status (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-C\-V}
+\end{DoxyParamCaption}
+)}}\label{class_c_receiver_a18db451b4401eafbd75f549b880426b6}
+
+
+Get solution status and store it in Fix\-Type. 
+
+Example\-: Rec1.\-Get\-Solution\-Status; \hypertarget{class_c_receiver_a05982a8b657d04cebc74f39a6737a523}{\index{C\-Receiver@{C\-Receiver}!Recieve\-String@{Recieve\-String}}
+\index{Recieve\-String@{Recieve\-String}!CReceiver@{C\-Receiver}}
+\subsubsection[{Recieve\-String}]{\setlength{\rightskip}{0pt plus 5cm}function C\-Receiver\-::\-Recieve\-String (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-C\-V}
+\end{DoxyParamCaption}
+)}}\label{class_c_receiver_a05982a8b657d04cebc74f39a6737a523}
+
+
+Read data from receiver. 
+
+Example\-: Rec1.\-Recieve\-String; \begin{DoxyReturn}{Returns}
+Answer Data from receiver 
+\end{DoxyReturn}
+\hypertarget{class_c_receiver_a24d9be27941e8c593a588df56f0cafe1}{\index{C\-Receiver@{C\-Receiver}!Reset@{Reset}}
+\index{Reset@{Reset}!CReceiver@{C\-Receiver}}
+\subsubsection[{Reset}]{\setlength{\rightskip}{0pt plus 5cm}function C\-Receiver\-::\-Reset (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-C\-V}
+\end{DoxyParamCaption}
+)}}\label{class_c_receiver_a24d9be27941e8c593a588df56f0cafe1}
+
+
+Reset receiver ( N\-M\-E\-A string is true for G\-E\-O\-S-\/3 ) 
+
+Example\-: Rec1.\-Reset; \hypertarget{class_c_receiver_a998ae45117346e1ab1fb5511d5fe295d}{\index{C\-Receiver@{C\-Receiver}!Serial\-Close@{Serial\-Close}}
+\index{Serial\-Close@{Serial\-Close}!CReceiver@{C\-Receiver}}
+\subsubsection[{Serial\-Close}]{\setlength{\rightskip}{0pt plus 5cm}function C\-Receiver\-::\-Serial\-Close (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-C\-V}
+\end{DoxyParamCaption}
+)}}\label{class_c_receiver_a998ae45117346e1ab1fb5511d5fe295d}
+
+
+Close connection to receiver. 
+
+Example\-: Rec1.\-Serial\-Close; \begin{DoxyReturn}{Returns}
+Status Is 0 -\/ fail; 1 -\/ ok. 
+\end{DoxyReturn}
+\hypertarget{class_c_receiver_abb26454266315d70b8cd980440131b2c}{\index{C\-Receiver@{C\-Receiver}!Serial\-Config@{Serial\-Config}}
+\index{Serial\-Config@{Serial\-Config}!CReceiver@{C\-Receiver}}
+\subsubsection[{Serial\-Config}]{\setlength{\rightskip}{0pt plus 5cm}function C\-Receiver\-::\-Serial\-Config (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-C\-V, }
+\item[{in}]{C\-O\-M, }
+\item[{in}]{Baud}
+\end{DoxyParamCaption}
+)}}\label{class_c_receiver_abb26454266315d70b8cd980440131b2c}
+
+
+Set parameters of serial port. 
+
+Example\-: Rec1.\-Serial\-Config('C\-O\-M7', 115200); 
+\begin{DoxyParams}{Parameters}
+{\em C\-O\-M} & String port name \\
+\hline
+{\em Baud} & Baud rate \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_c_receiver_a1d8dc5af14b27f0abc720e0bc60e5903}{\index{C\-Receiver@{C\-Receiver}!Serial\-Connect@{Serial\-Connect}}
+\index{Serial\-Connect@{Serial\-Connect}!CReceiver@{C\-Receiver}}
+\subsubsection[{Serial\-Connect}]{\setlength{\rightskip}{0pt plus 5cm}function C\-Receiver\-::\-Serial\-Connect (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-C\-V}
+\end{DoxyParamCaption}
+)}}\label{class_c_receiver_a1d8dc5af14b27f0abc720e0bc60e5903}
+
+
+Connect to receiver by serial port. 
+
+Example\-: Rec1.\-Serial\-Connect; \begin{DoxyReturn}{Returns}
+Status Is 0 -\/ fail; 1 -\/ ok. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_c_receiver_8m}{C\-Receiver.\-m}\end{DoxyCompactItemize}

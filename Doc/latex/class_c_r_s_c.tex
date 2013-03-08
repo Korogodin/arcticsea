@@ -1,0 +1,218 @@
+\hypertarget{class_c_r_s_c}{\section{C\-R\-S\-C Class Reference}
+\label{class_c_r_s_c}\index{C\-R\-S\-C@{C\-R\-S\-C}}
+}
+
+
+Class for Rohde\&Schwarz R\-S\-C attenuator.  
+
+
+Inheritance diagram for C\-R\-S\-C\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_r_s_c}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+function \hyperlink{class_c_r_s_c_a9725a31fadc37da312608237d7da3779}{C\-R\-S\-C} ()
+\begin{DoxyCompactList}\small\item\em Consturctor of this class. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_r_s_c_ad8852adcd3474f0dddb49c6c27f70014}{Set\-Connection} (in R\-S, in I\-P, in port)
+\begin{DoxyCompactList}\small\item\em Connect to unit by local network. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_r_s_c_a4e3e35fc6172c7550e58fae0b5b098a7}{Close\-Connection} (in R\-S)
+\begin{DoxyCompactList}\small\item\em Close connection and return to manual control. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_r_s_c_a83851a7742d4988028b6e2ae8e300ca3}{Send\-Command} (in R\-S, in str\-Command)
+\begin{DoxyCompactList}\small\item\em Send S\-C\-P\-I command to R\-S\-C. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_r_s_c_a688ac03d48974753aa592203a1043407}{Send\-Query} (in R\-S, in str\-Command)
+\begin{DoxyCompactList}\small\item\em Send request for answer. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_r_s_c_a496b2cfe6b0a0d9969d1a34d58bae8c8}{Get\-I\-D\-N} (in R\-S)
+\begin{DoxyCompactList}\small\item\em Get information about instrument. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_r_s_c_a5a1cc70414806e77dea5764f4f4448e7}{Preset} (in R\-S)
+\begin{DoxyCompactList}\small\item\em Preset instrument and clear errors log. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_r_s_c_a214d639dd531bd357e06f65210c28749}{Query\-Error} (in R\-S)
+\begin{DoxyCompactList}\small\item\em Check errors in R\-S\-C. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_r_s_c_ae0386a828e60dffbeeb37ab5e8404726}{Set\-Attenuation} (in R\-S, in A\-T\-T)
+\begin{DoxyCompactList}\small\item\em Set the attenuation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_c_r_s_c_a893573fd0ef1f8153e6d28c66ab65ad6}{Property \hyperlink{class_c_r_s_c_a893573fd0ef1f8153e6d28c66ab65ad6}{Instr}}\label{class_c_r_s_c_a893573fd0ef1f8153e6d28c66ab65ad6}
+
+\begin{DoxyCompactList}\small\item\em Pointer of T\-C\-P/\-I\-P connection. \end{DoxyCompactList}\item 
+\hypertarget{class_c_r_s_c_a9def62625fb022945295d797fdd28f2f}{Property \hyperlink{class_c_r_s_c_a9def62625fb022945295d797fdd28f2f}{Attenuation}}\label{class_c_r_s_c_a9def62625fb022945295d797fdd28f2f}
+
+\begin{DoxyCompactList}\small\item\em Attenuation d\-B. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for Rohde\&Schwarz R\-S\-C attenuator. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_c_r_s_c_a9725a31fadc37da312608237d7da3779}{\index{C\-R\-S\-C@{C\-R\-S\-C}!C\-R\-S\-C@{C\-R\-S\-C}}
+\index{C\-R\-S\-C@{C\-R\-S\-C}!CRSC@{C\-R\-S\-C}}
+\subsubsection[{C\-R\-S\-C}]{\setlength{\rightskip}{0pt plus 5cm}function C\-R\-S\-C\-::\-C\-R\-S\-C (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_c_r_s_c_a9725a31fadc37da312608237d7da3779}
+
+
+Consturctor of this class. 
+
+This is constructor of R\-S\-C control class\par
+ Example\-: R\-S\-C3 = \hyperlink{class_c_r_s_c}{C\-R\-S\-C};
+
+\begin{DoxyReturn}{Returns}
+R\-S Object of this class 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_c_r_s_c_a4e3e35fc6172c7550e58fae0b5b098a7}{\index{C\-R\-S\-C@{C\-R\-S\-C}!Close\-Connection@{Close\-Connection}}
+\index{Close\-Connection@{Close\-Connection}!CRSC@{C\-R\-S\-C}}
+\subsubsection[{Close\-Connection}]{\setlength{\rightskip}{0pt plus 5cm}function C\-R\-S\-C\-::\-Close\-Connection (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S}
+\end{DoxyParamCaption}
+)}}\label{class_c_r_s_c_a4e3e35fc6172c7550e58fae0b5b098a7}
+
+
+Close connection and return to manual control. 
+
+Example\-: R\-S\-C3.\-Close\-Connection; \begin{DoxyReturn}{Returns}
+Status Returns a status of 0 when the close operation is successful. Otherwise, it returns -\/1 
+\end{DoxyReturn}
+\hypertarget{class_c_r_s_c_a496b2cfe6b0a0d9969d1a34d58bae8c8}{\index{C\-R\-S\-C@{C\-R\-S\-C}!Get\-I\-D\-N@{Get\-I\-D\-N}}
+\index{Get\-I\-D\-N@{Get\-I\-D\-N}!CRSC@{C\-R\-S\-C}}
+\subsubsection[{Get\-I\-D\-N}]{\setlength{\rightskip}{0pt plus 5cm}function C\-R\-S\-C\-::\-Get\-I\-D\-N (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S}
+\end{DoxyParamCaption}
+)}}\label{class_c_r_s_c_a496b2cfe6b0a0d9969d1a34d58bae8c8}
+
+
+Get information about instrument. 
+
+Example\-: R\-S\-C3.\-Get\-I\-D\-N; \begin{DoxyReturn}{Returns}
+I\-D\-N String information about instrument 
+
+Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0 
+\end{DoxyReturn}
+\hypertarget{class_c_r_s_c_a5a1cc70414806e77dea5764f4f4448e7}{\index{C\-R\-S\-C@{C\-R\-S\-C}!Preset@{Preset}}
+\index{Preset@{Preset}!CRSC@{C\-R\-S\-C}}
+\subsubsection[{Preset}]{\setlength{\rightskip}{0pt plus 5cm}function C\-R\-S\-C\-::\-Preset (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S}
+\end{DoxyParamCaption}
+)}}\label{class_c_r_s_c_a5a1cc70414806e77dea5764f4f4448e7}
+
+
+Preset instrument and clear errors log. 
+
+Example\-: R\-S\-C3.\-Preset; \begin{DoxyReturn}{Returns}
+Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0 
+\end{DoxyReturn}
+\hypertarget{class_c_r_s_c_a214d639dd531bd357e06f65210c28749}{\index{C\-R\-S\-C@{C\-R\-S\-C}!Query\-Error@{Query\-Error}}
+\index{Query\-Error@{Query\-Error}!CRSC@{C\-R\-S\-C}}
+\subsubsection[{Query\-Error}]{\setlength{\rightskip}{0pt plus 5cm}function C\-R\-S\-C\-::\-Query\-Error (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S}
+\end{DoxyParamCaption}
+)}}\label{class_c_r_s_c_a214d639dd531bd357e06f65210c28749}
+
+
+Check errors in R\-S\-C. 
+
+Example\-: R\-S\-C3.\-Query\-Error; \begin{DoxyReturn}{Returns}
+Err Err = 1 instrument error occured, 0 no error 
+\end{DoxyReturn}
+\hypertarget{class_c_r_s_c_a83851a7742d4988028b6e2ae8e300ca3}{\index{C\-R\-S\-C@{C\-R\-S\-C}!Send\-Command@{Send\-Command}}
+\index{Send\-Command@{Send\-Command}!CRSC@{C\-R\-S\-C}}
+\subsubsection[{Send\-Command}]{\setlength{\rightskip}{0pt plus 5cm}function C\-R\-S\-C\-::\-Send\-Command (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S, }
+\item[{in}]{str\-Command}
+\end{DoxyParamCaption}
+)}}\label{class_c_r_s_c_a83851a7742d4988028b6e2ae8e300ca3}
+
+
+Send S\-C\-P\-I command to R\-S\-C. 
+
+Example\-: R\-S\-C3.\-Send\-Command('$\ast$\-R\-S\-T'); 
+\begin{DoxyParams}{Parameters}
+{\em str\-Command} & String of S\-C\-P\-I command \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0 
+\end{DoxyReturn}
+\hypertarget{class_c_r_s_c_a688ac03d48974753aa592203a1043407}{\index{C\-R\-S\-C@{C\-R\-S\-C}!Send\-Query@{Send\-Query}}
+\index{Send\-Query@{Send\-Query}!CRSC@{C\-R\-S\-C}}
+\subsubsection[{Send\-Query}]{\setlength{\rightskip}{0pt plus 5cm}function C\-R\-S\-C\-::\-Send\-Query (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S, }
+\item[{in}]{str\-Command}
+\end{DoxyParamCaption}
+)}}\label{class_c_r_s_c_a688ac03d48974753aa592203a1043407}
+
+
+Send request for answer. 
+
+Example\-: R\-S\-C3.\-Send\-Query('$\ast$\-I\-D\-N?'); 
+\begin{DoxyParams}{Parameters}
+{\em str\-Command} & String of S\-C\-P\-I command \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0 
+
+Result Returns an answer of F\-S\-V 
+\end{DoxyReturn}
+\hypertarget{class_c_r_s_c_ae0386a828e60dffbeeb37ab5e8404726}{\index{C\-R\-S\-C@{C\-R\-S\-C}!Set\-Attenuation@{Set\-Attenuation}}
+\index{Set\-Attenuation@{Set\-Attenuation}!CRSC@{C\-R\-S\-C}}
+\subsubsection[{Set\-Attenuation}]{\setlength{\rightskip}{0pt plus 5cm}function C\-R\-S\-C\-::\-Set\-Attenuation (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S, }
+\item[{in}]{A\-T\-T}
+\end{DoxyParamCaption}
+)}}\label{class_c_r_s_c_ae0386a828e60dffbeeb37ab5e8404726}
+
+
+Set the attenuation. 
+
+Example\-: R\-S\-C3.\-Set\-Attenuation(30); 
+\begin{DoxyParams}{Parameters}
+{\em A\-T\-T} & attenuation d\-B \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0 
+\end{DoxyReturn}
+\hypertarget{class_c_r_s_c_ad8852adcd3474f0dddb49c6c27f70014}{\index{C\-R\-S\-C@{C\-R\-S\-C}!Set\-Connection@{Set\-Connection}}
+\index{Set\-Connection@{Set\-Connection}!CRSC@{C\-R\-S\-C}}
+\subsubsection[{Set\-Connection}]{\setlength{\rightskip}{0pt plus 5cm}function C\-R\-S\-C\-::\-Set\-Connection (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S, }
+\item[{in}]{I\-P, }
+\item[{in}]{port}
+\end{DoxyParamCaption}
+)}}\label{class_c_r_s_c_ad8852adcd3474f0dddb49c6c27f70014}
+
+
+Connect to unit by local network. 
+
+Example\-: R\-S\-C3.\-Set\-Connection('192.\-168.\-1.\-58', 5025); 
+\begin{DoxyParams}{Parameters}
+{\em I\-P} & String I\-P-\/address of measurement unit \\
+\hline
+{\em port} & Port for T\-C\-P/\-I\-P connection, usually 5025 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status Is 0 -\/ fail; 1 -\/ ok. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_c_r_s_c_8m}{C\-R\-S\-C.\-m}\end{DoxyCompactItemize}

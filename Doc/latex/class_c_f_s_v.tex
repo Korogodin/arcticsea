@@ -1,0 +1,273 @@
+\hypertarget{class_c_f_s_v}{\section{C\-F\-S\-V Class Reference}
+\label{class_c_f_s_v}\index{C\-F\-S\-V@{C\-F\-S\-V}}
+}
+
+
+Class for Rohde\&Schwarz F\-S\-V signal \& spectrum analyzers.  
+
+
+Inheritance diagram for C\-F\-S\-V\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_f_s_v}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+function \hyperlink{class_c_f_s_v_a21bda715aa6bd2ab1ef9c15953a00871}{C\-F\-S\-V} ()
+\begin{DoxyCompactList}\small\item\em Consturctor of this class. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_f_s_v_a0ece0fccd00cfc33f87bb4d060ae936a}{Set\-Connection} (in R\-S, in I\-P, in port)
+\begin{DoxyCompactList}\small\item\em Connect to unit by local network. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_f_s_v_af7fd6ac3853cd4d5ab6beeb29d0fe3b6}{Close\-Connection} (in R\-S)
+\begin{DoxyCompactList}\small\item\em Close connection and return to manual control. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_f_s_v_a300a6d255e74ef7f84444320a692840a}{Send\-Command} (in R\-S, in str\-Command)
+\begin{DoxyCompactList}\small\item\em Send S\-C\-P\-I command to F\-S\-V. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_f_s_v_a055274294fa172b93a384ca06a3987da}{Send\-Query} (in R\-S, in str\-Command)
+\begin{DoxyCompactList}\small\item\em Send request for answer. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_f_s_v_a3f2932bbb46ec258203bf50ef18401d4}{Get\-I\-D\-N} (in R\-S)
+\begin{DoxyCompactList}\small\item\em Get information about instrument. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_f_s_v_a58ed3f3f8b29226e29f35b43ed3f78df}{Preset} (in R\-S)
+\begin{DoxyCompactList}\small\item\em Preset instrument and clear errors log. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_f_s_v_a4a9f9beafd847d609723d74801a28b2b}{Query\-Error} (in R\-S)
+\begin{DoxyCompactList}\small\item\em Check errors in F\-S\-V. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_f_s_v_a0450f3cf71b248bb686c8ce4fb28c96a}{Set\-Center\-Freq} (in R\-S, in Freq)
+\begin{DoxyCompactList}\small\item\em Set the center frequency of the spectrum analysis. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_f_s_v_a5507bb0e128a5412cb0d15eaae371d53}{Set\-Span} (in R\-S, in \hyperlink{class_c_f_s_v_ab6ba1b89aad6e2adfc7ec6206ae0c930}{Span})
+\begin{DoxyCompactList}\small\item\em Set bandwidth of the spectrum analysis. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_f_s_v_aef5e4bca9a7a36772525e770747f4e15}{Power\-Measure} (in R\-S, in Bandwidth)
+\begin{DoxyCompactList}\small\item\em Measure power in given bandwith. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_c_f_s_v_abc06cb3df3ed2f2c585976d2d2bcccda}{Property \hyperlink{class_c_f_s_v_abc06cb3df3ed2f2c585976d2d2bcccda}{Instr}}\label{class_c_f_s_v_abc06cb3df3ed2f2c585976d2d2bcccda}
+
+\begin{DoxyCompactList}\small\item\em Pointer of T\-C\-P/\-I\-P connection. \end{DoxyCompactList}\item 
+\hypertarget{class_c_f_s_v_ab6ba1b89aad6e2adfc7ec6206ae0c930}{Property \hyperlink{class_c_f_s_v_ab6ba1b89aad6e2adfc7ec6206ae0c930}{Span}}\label{class_c_f_s_v_ab6ba1b89aad6e2adfc7ec6206ae0c930}
+
+\begin{DoxyCompactList}\small\item\em Band for spectrum analysis. \end{DoxyCompactList}\item 
+\hypertarget{class_c_f_s_v_acb5509bbe32d4e3d579518b26d85dfb7}{Property \hyperlink{class_c_f_s_v_acb5509bbe32d4e3d579518b26d85dfb7}{Center\-Freq}}\label{class_c_f_s_v_acb5509bbe32d4e3d579518b26d85dfb7}
+
+\begin{DoxyCompactList}\small\item\em Central frequency for spectrum analysis. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for Rohde\&Schwarz F\-S\-V signal \& spectrum analyzers. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_c_f_s_v_a21bda715aa6bd2ab1ef9c15953a00871}{\index{C\-F\-S\-V@{C\-F\-S\-V}!C\-F\-S\-V@{C\-F\-S\-V}}
+\index{C\-F\-S\-V@{C\-F\-S\-V}!CFSV@{C\-F\-S\-V}}
+\subsubsection[{C\-F\-S\-V}]{\setlength{\rightskip}{0pt plus 5cm}function C\-F\-S\-V\-::\-C\-F\-S\-V (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_c_f_s_v_a21bda715aa6bd2ab1ef9c15953a00871}
+
+
+Consturctor of this class. 
+
+This is constructor of F\-S\-V control class\par
+ Example\-: F\-S\-V3 = \hyperlink{class_c_f_s_v}{C\-F\-S\-V};
+
+\begin{DoxyReturn}{Returns}
+R\-S Object of this class 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_c_f_s_v_af7fd6ac3853cd4d5ab6beeb29d0fe3b6}{\index{C\-F\-S\-V@{C\-F\-S\-V}!Close\-Connection@{Close\-Connection}}
+\index{Close\-Connection@{Close\-Connection}!CFSV@{C\-F\-S\-V}}
+\subsubsection[{Close\-Connection}]{\setlength{\rightskip}{0pt plus 5cm}function C\-F\-S\-V\-::\-Close\-Connection (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S}
+\end{DoxyParamCaption}
+)}}\label{class_c_f_s_v_af7fd6ac3853cd4d5ab6beeb29d0fe3b6}
+
+
+Close connection and return to manual control. 
+
+Example\-: F\-S\-V3.\-Close\-Connection; \begin{DoxyReturn}{Returns}
+Status Returns a status of 0 when the close operation is successful. Otherwise, it returns -\/1 
+\end{DoxyReturn}
+\hypertarget{class_c_f_s_v_a3f2932bbb46ec258203bf50ef18401d4}{\index{C\-F\-S\-V@{C\-F\-S\-V}!Get\-I\-D\-N@{Get\-I\-D\-N}}
+\index{Get\-I\-D\-N@{Get\-I\-D\-N}!CFSV@{C\-F\-S\-V}}
+\subsubsection[{Get\-I\-D\-N}]{\setlength{\rightskip}{0pt plus 5cm}function C\-F\-S\-V\-::\-Get\-I\-D\-N (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S}
+\end{DoxyParamCaption}
+)}}\label{class_c_f_s_v_a3f2932bbb46ec258203bf50ef18401d4}
+
+
+Get information about instrument. 
+
+Example\-: F\-S\-V3.\-Get\-I\-D\-N; \begin{DoxyReturn}{Returns}
+I\-D\-N String information about instrument 
+
+Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0 
+\end{DoxyReturn}
+\hypertarget{class_c_f_s_v_aef5e4bca9a7a36772525e770747f4e15}{\index{C\-F\-S\-V@{C\-F\-S\-V}!Power\-Measure@{Power\-Measure}}
+\index{Power\-Measure@{Power\-Measure}!CFSV@{C\-F\-S\-V}}
+\subsubsection[{Power\-Measure}]{\setlength{\rightskip}{0pt plus 5cm}function C\-F\-S\-V\-::\-Power\-Measure (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S, }
+\item[{in}]{Bandwidth}
+\end{DoxyParamCaption}
+)}}\label{class_c_f_s_v_aef5e4bca9a7a36772525e770747f4e15}
+
+
+Measure power in given bandwith. 
+
+Example\-:\par
+ F\-S\-V3.\-Power\-Measure('10\-M\-Hz');\par
+ F\-S\-V3.\-Power\-Measure(1\-E7); 
+\begin{DoxyParams}{Parameters}
+{\em Bandwidth} & String 1\-M\-Hz or float 1.\-123\-E6 (Hz) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+measure Power in bandwith, d\-Bm 
+
+Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0 
+\end{DoxyReturn}
+\hypertarget{class_c_f_s_v_a58ed3f3f8b29226e29f35b43ed3f78df}{\index{C\-F\-S\-V@{C\-F\-S\-V}!Preset@{Preset}}
+\index{Preset@{Preset}!CFSV@{C\-F\-S\-V}}
+\subsubsection[{Preset}]{\setlength{\rightskip}{0pt plus 5cm}function C\-F\-S\-V\-::\-Preset (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S}
+\end{DoxyParamCaption}
+)}}\label{class_c_f_s_v_a58ed3f3f8b29226e29f35b43ed3f78df}
+
+
+Preset instrument and clear errors log. 
+
+Example\-: F\-S\-V3.\-Preset; \begin{DoxyReturn}{Returns}
+Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0 
+\end{DoxyReturn}
+\hypertarget{class_c_f_s_v_a4a9f9beafd847d609723d74801a28b2b}{\index{C\-F\-S\-V@{C\-F\-S\-V}!Query\-Error@{Query\-Error}}
+\index{Query\-Error@{Query\-Error}!CFSV@{C\-F\-S\-V}}
+\subsubsection[{Query\-Error}]{\setlength{\rightskip}{0pt plus 5cm}function C\-F\-S\-V\-::\-Query\-Error (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S}
+\end{DoxyParamCaption}
+)}}\label{class_c_f_s_v_a4a9f9beafd847d609723d74801a28b2b}
+
+
+Check errors in F\-S\-V. 
+
+Example\-: F\-S\-V3.\-Query\-Error; \begin{DoxyReturn}{Returns}
+Err Err = 1 instrument error occured, 0 no error 
+\end{DoxyReturn}
+\hypertarget{class_c_f_s_v_a300a6d255e74ef7f84444320a692840a}{\index{C\-F\-S\-V@{C\-F\-S\-V}!Send\-Command@{Send\-Command}}
+\index{Send\-Command@{Send\-Command}!CFSV@{C\-F\-S\-V}}
+\subsubsection[{Send\-Command}]{\setlength{\rightskip}{0pt plus 5cm}function C\-F\-S\-V\-::\-Send\-Command (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S, }
+\item[{in}]{str\-Command}
+\end{DoxyParamCaption}
+)}}\label{class_c_f_s_v_a300a6d255e74ef7f84444320a692840a}
+
+
+Send S\-C\-P\-I command to F\-S\-V. 
+
+Example\-: F\-S\-V3.\-Send\-Command('$\ast$\-R\-S\-T'); 
+\begin{DoxyParams}{Parameters}
+{\em str\-Command} & String of S\-C\-P\-I command \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0 
+\end{DoxyReturn}
+\hypertarget{class_c_f_s_v_a055274294fa172b93a384ca06a3987da}{\index{C\-F\-S\-V@{C\-F\-S\-V}!Send\-Query@{Send\-Query}}
+\index{Send\-Query@{Send\-Query}!CFSV@{C\-F\-S\-V}}
+\subsubsection[{Send\-Query}]{\setlength{\rightskip}{0pt plus 5cm}function C\-F\-S\-V\-::\-Send\-Query (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S, }
+\item[{in}]{str\-Command}
+\end{DoxyParamCaption}
+)}}\label{class_c_f_s_v_a055274294fa172b93a384ca06a3987da}
+
+
+Send request for answer. 
+
+Example\-: F\-S\-V3.\-Send\-Query('$\ast$\-I\-D\-N?'); 
+\begin{DoxyParams}{Parameters}
+{\em str\-Command} & String of S\-C\-P\-I command \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0 
+
+Result Returns an answer of F\-S\-V 
+\end{DoxyReturn}
+\hypertarget{class_c_f_s_v_a0450f3cf71b248bb686c8ce4fb28c96a}{\index{C\-F\-S\-V@{C\-F\-S\-V}!Set\-Center\-Freq@{Set\-Center\-Freq}}
+\index{Set\-Center\-Freq@{Set\-Center\-Freq}!CFSV@{C\-F\-S\-V}}
+\subsubsection[{Set\-Center\-Freq}]{\setlength{\rightskip}{0pt plus 5cm}function C\-F\-S\-V\-::\-Set\-Center\-Freq (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S, }
+\item[{in}]{Freq}
+\end{DoxyParamCaption}
+)}}\label{class_c_f_s_v_a0450f3cf71b248bb686c8ce4fb28c96a}
+
+
+Set the center frequency of the spectrum analysis. 
+
+Example\-:\par
+ F\-S\-V3.\-Set\-Center\-Freq('1\-G\-Hz');\par
+ F\-S\-V3.\-Set\-Center\-Freq(1\-E9); 
+\begin{DoxyParams}{Parameters}
+{\em Freq} & Central frequency string 1\-G\-Hz or float 1.\-11\-E9 (Hz) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0 
+\end{DoxyReturn}
+\hypertarget{class_c_f_s_v_a0ece0fccd00cfc33f87bb4d060ae936a}{\index{C\-F\-S\-V@{C\-F\-S\-V}!Set\-Connection@{Set\-Connection}}
+\index{Set\-Connection@{Set\-Connection}!CFSV@{C\-F\-S\-V}}
+\subsubsection[{Set\-Connection}]{\setlength{\rightskip}{0pt plus 5cm}function C\-F\-S\-V\-::\-Set\-Connection (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S, }
+\item[{in}]{I\-P, }
+\item[{in}]{port}
+\end{DoxyParamCaption}
+)}}\label{class_c_f_s_v_a0ece0fccd00cfc33f87bb4d060ae936a}
+
+
+Connect to unit by local network. 
+
+Example\-: F\-S\-V3.\-Set\-Connection('192.\-168.\-1.\-100', 5025); 
+\begin{DoxyParams}{Parameters}
+{\em I\-P} & String I\-P-\/address of measurement unit \\
+\hline
+{\em port} & Port for T\-C\-P/\-I\-P connection, usually 5025 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status Is 0 -\/ fail; 1 -\/ ok. 
+\end{DoxyReturn}
+\hypertarget{class_c_f_s_v_a5507bb0e128a5412cb0d15eaae371d53}{\index{C\-F\-S\-V@{C\-F\-S\-V}!Set\-Span@{Set\-Span}}
+\index{Set\-Span@{Set\-Span}!CFSV@{C\-F\-S\-V}}
+\subsubsection[{Set\-Span}]{\setlength{\rightskip}{0pt plus 5cm}function C\-F\-S\-V\-::\-Set\-Span (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S, }
+\item[{in}]{Span}
+\end{DoxyParamCaption}
+)}}\label{class_c_f_s_v_a5507bb0e128a5412cb0d15eaae371d53}
+
+
+Set bandwidth of the spectrum analysis. 
+
+Example\-:\par
+ F\-S\-V3.\-Set\-Span('1\-M\-Hz');\par
+ F\-S\-V3.\-Set\-Span(1\-E6); 
+\begin{DoxyParams}{Parameters}
+{\em Span} & String 1\-M\-Hz or float 1.\-1\-E6 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_c_f_s_v_8m}{C\-F\-S\-V.\-m}\end{DoxyCompactItemize}

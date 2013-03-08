@@ -1,0 +1,290 @@
+\hypertarget{class_c_s_m_b_v}{\section{C\-S\-M\-B\-V Class Reference}
+\label{class_c_s_m_b_v}\index{C\-S\-M\-B\-V@{C\-S\-M\-B\-V}}
+}
+
+
+Class for Rohde\&Schwarz S\-M\-B\-V100\-A vector signal generator.  
+
+
+Inheritance diagram for C\-S\-M\-B\-V\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_c_s_m_b_v}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+function \hyperlink{class_c_s_m_b_v_a10fbb6e63902d0c1dddd9e792dac6fa3}{C\-S\-M\-B\-V} ()
+\begin{DoxyCompactList}\small\item\em Consturctor of this class. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_s_m_b_v_ae85fc05ea34a19b1b42a90af475690bf}{Set\-Connection} (in R\-S, in I\-P, in port)
+\begin{DoxyCompactList}\small\item\em Connect to unit by local network. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_s_m_b_v_a9ab41634cbc045056bc78650d56854ac}{Close\-Connection} (in R\-S)
+\begin{DoxyCompactList}\small\item\em Close connection and return to manual control. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_s_m_b_v_a5b025e39750835c37cd70806435bda33}{Send\-Command} (in R\-S, in str\-Command)
+\begin{DoxyCompactList}\small\item\em Send S\-C\-P\-I command to S\-M\-B\-V. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_s_m_b_v_a53761b9f51f91fd6b38d3b3ec117e813}{Send\-Query} (in R\-S, in str\-Command)
+\begin{DoxyCompactList}\small\item\em Send request for answer. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_s_m_b_v_a6d5f7bb3b1af3a752aad78f6b36b755a}{Get\-I\-D\-N} (in R\-S)
+\begin{DoxyCompactList}\small\item\em Get information about instrument. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_s_m_b_v_a0c6e9619aa4cf9464edc512b2b557dec}{Preset} (in R\-S)
+\begin{DoxyCompactList}\small\item\em Preset instrument and clear errors log. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_s_m_b_v_a6be4429d47f5da0aa82423fdb77eb990}{Query\-Error} (in R\-S)
+\begin{DoxyCompactList}\small\item\em Check errors in S\-M\-B\-V. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_s_m_b_v_a2b45f1a385538046a8b9da1ee79a5186}{Set\-Level} (in R\-S, in \hyperlink{class_c_s_m_b_v_aa7f7138c5ee0adb847b7450aed49cfcc}{Level})
+\begin{DoxyCompactList}\small\item\em Set the output power level. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_s_m_b_v_a1a41ea8f1e690462194823077b3bf422}{Set\-Freq} (in R\-S, in \hyperlink{class_c_s_m_b_v_a2e492ee90610c51ccb4eb206c788dbca}{Freq})
+\begin{DoxyCompactList}\small\item\em Set the frequency of the carrier. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_s_m_b_v_a4e2bf2f6e9a782439dc5dc0915ee29ff}{Set\-R\-F\-Output} (in R\-S, in State)
+\begin{DoxyCompactList}\small\item\em Set the R\-F output O\-N/\-O\-F\-F. \end{DoxyCompactList}\item 
+function \hyperlink{class_c_s_m_b_v_a2f597f1c5a83db80d1f6d70c27cd66a1}{Set\-G\-P\-S} (in R\-S, in Sat\-Number)
+\begin{DoxyCompactList}\small\item\em Simulate signals of several G\-P\-S satellites, satellite signal power is the same, the frequency range is L1, location -\/ Moscow. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_c_s_m_b_v_a2e492ee90610c51ccb4eb206c788dbca}{Property \hyperlink{class_c_s_m_b_v_a2e492ee90610c51ccb4eb206c788dbca}{Freq}}\label{class_c_s_m_b_v_a2e492ee90610c51ccb4eb206c788dbca}
+
+\begin{DoxyCompactList}\small\item\em Frequency of the carrier Hz. \end{DoxyCompactList}\item 
+\hypertarget{class_c_s_m_b_v_aa7f7138c5ee0adb847b7450aed49cfcc}{Property \hyperlink{class_c_s_m_b_v_aa7f7138c5ee0adb847b7450aed49cfcc}{Level}}\label{class_c_s_m_b_v_aa7f7138c5ee0adb847b7450aed49cfcc}
+
+\begin{DoxyCompactList}\small\item\em Output power d\-Bm. \end{DoxyCompactList}\item 
+\hypertarget{class_c_s_m_b_v_a60e358da18fe7ce3822377140c2cda96}{Property \hyperlink{class_c_s_m_b_v_a60e358da18fe7ce3822377140c2cda96}{Instr}}\label{class_c_s_m_b_v_a60e358da18fe7ce3822377140c2cda96}
+
+\begin{DoxyCompactList}\small\item\em Pointer of T\-C\-P/\-I\-P connection. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for Rohde\&Schwarz S\-M\-B\-V100\-A vector signal generator. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_c_s_m_b_v_a10fbb6e63902d0c1dddd9e792dac6fa3}{\index{C\-S\-M\-B\-V@{C\-S\-M\-B\-V}!C\-S\-M\-B\-V@{C\-S\-M\-B\-V}}
+\index{C\-S\-M\-B\-V@{C\-S\-M\-B\-V}!CSMBV@{C\-S\-M\-B\-V}}
+\subsubsection[{C\-S\-M\-B\-V}]{\setlength{\rightskip}{0pt plus 5cm}function C\-S\-M\-B\-V\-::\-C\-S\-M\-B\-V (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_c_s_m_b_v_a10fbb6e63902d0c1dddd9e792dac6fa3}
+
+
+Consturctor of this class. 
+
+This is constructor of S\-M\-B\-V control class\par
+ Example\-: S\-M\-B\-V1 = \hyperlink{class_c_s_m_b_v}{C\-S\-M\-B\-V};
+
+\begin{DoxyReturn}{Returns}
+R\-S Object of this class 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_c_s_m_b_v_a9ab41634cbc045056bc78650d56854ac}{\index{C\-S\-M\-B\-V@{C\-S\-M\-B\-V}!Close\-Connection@{Close\-Connection}}
+\index{Close\-Connection@{Close\-Connection}!CSMBV@{C\-S\-M\-B\-V}}
+\subsubsection[{Close\-Connection}]{\setlength{\rightskip}{0pt plus 5cm}function C\-S\-M\-B\-V\-::\-Close\-Connection (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S}
+\end{DoxyParamCaption}
+)}}\label{class_c_s_m_b_v_a9ab41634cbc045056bc78650d56854ac}
+
+
+Close connection and return to manual control. 
+
+Example\-: S\-M\-B\-V1.\-Close\-Connection; \begin{DoxyReturn}{Returns}
+Status Returns a status of 0 when the close operation is successful. Otherwise, it returns -\/1 
+\end{DoxyReturn}
+\hypertarget{class_c_s_m_b_v_a6d5f7bb3b1af3a752aad78f6b36b755a}{\index{C\-S\-M\-B\-V@{C\-S\-M\-B\-V}!Get\-I\-D\-N@{Get\-I\-D\-N}}
+\index{Get\-I\-D\-N@{Get\-I\-D\-N}!CSMBV@{C\-S\-M\-B\-V}}
+\subsubsection[{Get\-I\-D\-N}]{\setlength{\rightskip}{0pt plus 5cm}function C\-S\-M\-B\-V\-::\-Get\-I\-D\-N (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S}
+\end{DoxyParamCaption}
+)}}\label{class_c_s_m_b_v_a6d5f7bb3b1af3a752aad78f6b36b755a}
+
+
+Get information about instrument. 
+
+Example\-: S\-M\-B\-V1.\-Get\-I\-D\-N; \begin{DoxyReturn}{Returns}
+I\-D\-N String information about instrument 
+
+Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0 
+\end{DoxyReturn}
+\hypertarget{class_c_s_m_b_v_a0c6e9619aa4cf9464edc512b2b557dec}{\index{C\-S\-M\-B\-V@{C\-S\-M\-B\-V}!Preset@{Preset}}
+\index{Preset@{Preset}!CSMBV@{C\-S\-M\-B\-V}}
+\subsubsection[{Preset}]{\setlength{\rightskip}{0pt plus 5cm}function C\-S\-M\-B\-V\-::\-Preset (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S}
+\end{DoxyParamCaption}
+)}}\label{class_c_s_m_b_v_a0c6e9619aa4cf9464edc512b2b557dec}
+
+
+Preset instrument and clear errors log. 
+
+Example\-: S\-M\-B\-V1.\-Preset; \begin{DoxyReturn}{Returns}
+Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0 
+\end{DoxyReturn}
+\hypertarget{class_c_s_m_b_v_a6be4429d47f5da0aa82423fdb77eb990}{\index{C\-S\-M\-B\-V@{C\-S\-M\-B\-V}!Query\-Error@{Query\-Error}}
+\index{Query\-Error@{Query\-Error}!CSMBV@{C\-S\-M\-B\-V}}
+\subsubsection[{Query\-Error}]{\setlength{\rightskip}{0pt plus 5cm}function C\-S\-M\-B\-V\-::\-Query\-Error (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S}
+\end{DoxyParamCaption}
+)}}\label{class_c_s_m_b_v_a6be4429d47f5da0aa82423fdb77eb990}
+
+
+Check errors in S\-M\-B\-V. 
+
+Example\-: S\-M\-B\-V1.\-Query\-Error; \begin{DoxyReturn}{Returns}
+Err Err = 1 instrument error occured, 0 no error 
+\end{DoxyReturn}
+\hypertarget{class_c_s_m_b_v_a5b025e39750835c37cd70806435bda33}{\index{C\-S\-M\-B\-V@{C\-S\-M\-B\-V}!Send\-Command@{Send\-Command}}
+\index{Send\-Command@{Send\-Command}!CSMBV@{C\-S\-M\-B\-V}}
+\subsubsection[{Send\-Command}]{\setlength{\rightskip}{0pt plus 5cm}function C\-S\-M\-B\-V\-::\-Send\-Command (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S, }
+\item[{in}]{str\-Command}
+\end{DoxyParamCaption}
+)}}\label{class_c_s_m_b_v_a5b025e39750835c37cd70806435bda33}
+
+
+Send S\-C\-P\-I command to S\-M\-B\-V. 
+
+Example\-: S\-M\-B\-V1.\-Send\-Command('$\ast$\-R\-S\-T'); 
+\begin{DoxyParams}{Parameters}
+{\em str\-Command} & String of S\-C\-P\-I command \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0 
+\end{DoxyReturn}
+\hypertarget{class_c_s_m_b_v_a53761b9f51f91fd6b38d3b3ec117e813}{\index{C\-S\-M\-B\-V@{C\-S\-M\-B\-V}!Send\-Query@{Send\-Query}}
+\index{Send\-Query@{Send\-Query}!CSMBV@{C\-S\-M\-B\-V}}
+\subsubsection[{Send\-Query}]{\setlength{\rightskip}{0pt plus 5cm}function C\-S\-M\-B\-V\-::\-Send\-Query (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S, }
+\item[{in}]{str\-Command}
+\end{DoxyParamCaption}
+)}}\label{class_c_s_m_b_v_a53761b9f51f91fd6b38d3b3ec117e813}
+
+
+Send request for answer. 
+
+Example\-: S\-M\-B\-V1.\-Send\-Query('$\ast$\-O\-P\-C?'); 
+\begin{DoxyParams}{Parameters}
+{\em str\-Command} & String of S\-C\-P\-I command \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0 
+
+Result Returns a answer of S\-M\-B\-V 
+\end{DoxyReturn}
+\hypertarget{class_c_s_m_b_v_ae85fc05ea34a19b1b42a90af475690bf}{\index{C\-S\-M\-B\-V@{C\-S\-M\-B\-V}!Set\-Connection@{Set\-Connection}}
+\index{Set\-Connection@{Set\-Connection}!CSMBV@{C\-S\-M\-B\-V}}
+\subsubsection[{Set\-Connection}]{\setlength{\rightskip}{0pt plus 5cm}function C\-S\-M\-B\-V\-::\-Set\-Connection (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S, }
+\item[{in}]{I\-P, }
+\item[{in}]{port}
+\end{DoxyParamCaption}
+)}}\label{class_c_s_m_b_v_ae85fc05ea34a19b1b42a90af475690bf}
+
+
+Connect to unit by local network. 
+
+Example\-: S\-M\-B\-V1.\-Set\-Connection('192.\-168.\-1.\-55', 5025); 
+\begin{DoxyParams}{Parameters}
+{\em I\-P} & String I\-P-\/address of unit \\
+\hline
+{\em port} & Port for T\-C\-P/\-I\-P connection, usually 5025 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status Is 0 -\/ fail; 1 -\/ ok. 
+\end{DoxyReturn}
+\hypertarget{class_c_s_m_b_v_a1a41ea8f1e690462194823077b3bf422}{\index{C\-S\-M\-B\-V@{C\-S\-M\-B\-V}!Set\-Freq@{Set\-Freq}}
+\index{Set\-Freq@{Set\-Freq}!CSMBV@{C\-S\-M\-B\-V}}
+\subsubsection[{Set\-Freq}]{\setlength{\rightskip}{0pt plus 5cm}function C\-S\-M\-B\-V\-::\-Set\-Freq (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S, }
+\item[{in}]{Freq}
+\end{DoxyParamCaption}
+)}}\label{class_c_s_m_b_v_a1a41ea8f1e690462194823077b3bf422}
+
+
+Set the frequency of the carrier. 
+
+Example\-:\par
+ S\-M\-B\-V1.\-Set\-Freq('1\-G\-Hz');\par
+ S\-M\-B\-V1.\-Set\-Freq('1\-E9');\par
+ 
+\begin{DoxyParams}{Parameters}
+{\em Freq} & Frequency of the carrier. Freq can be String 10\-G\-Hz or float(\-Hz) 10.\-12345\-E9 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0 
+\end{DoxyReturn}
+\hypertarget{class_c_s_m_b_v_a2f597f1c5a83db80d1f6d70c27cd66a1}{\index{C\-S\-M\-B\-V@{C\-S\-M\-B\-V}!Set\-G\-P\-S@{Set\-G\-P\-S}}
+\index{Set\-G\-P\-S@{Set\-G\-P\-S}!CSMBV@{C\-S\-M\-B\-V}}
+\subsubsection[{Set\-G\-P\-S}]{\setlength{\rightskip}{0pt plus 5cm}function C\-S\-M\-B\-V\-::\-Set\-G\-P\-S (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S, }
+\item[{in}]{Sat\-Number}
+\end{DoxyParamCaption}
+)}}\label{class_c_s_m_b_v_a2f597f1c5a83db80d1f6d70c27cd66a1}
+
+
+Simulate signals of several G\-P\-S satellites, satellite signal power is the same, the frequency range is L1, location -\/ Moscow. 
+
+Example\-: S\-M\-B\-V1.\-Set\-G\-P\-S(6); 
+\begin{DoxyParams}{Parameters}
+{\em Sat\-Number} & Integer number of satellites \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0 
+\end{DoxyReturn}
+\hypertarget{class_c_s_m_b_v_a2b45f1a385538046a8b9da1ee79a5186}{\index{C\-S\-M\-B\-V@{C\-S\-M\-B\-V}!Set\-Level@{Set\-Level}}
+\index{Set\-Level@{Set\-Level}!CSMBV@{C\-S\-M\-B\-V}}
+\subsubsection[{Set\-Level}]{\setlength{\rightskip}{0pt plus 5cm}function C\-S\-M\-B\-V\-::\-Set\-Level (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S, }
+\item[{in}]{Level}
+\end{DoxyParamCaption}
+)}}\label{class_c_s_m_b_v_a2b45f1a385538046a8b9da1ee79a5186}
+
+
+Set the output power level. 
+
+Example\-: S\-M\-B\-V1.\-Set\-Level(-\/130); 
+\begin{DoxyParams}{Parameters}
+{\em Level} & Output power level, d\-Bm \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0 
+\end{DoxyReturn}
+\hypertarget{class_c_s_m_b_v_a4e2bf2f6e9a782439dc5dc0915ee29ff}{\index{C\-S\-M\-B\-V@{C\-S\-M\-B\-V}!Set\-R\-F\-Output@{Set\-R\-F\-Output}}
+\index{Set\-R\-F\-Output@{Set\-R\-F\-Output}!CSMBV@{C\-S\-M\-B\-V}}
+\subsubsection[{Set\-R\-F\-Output}]{\setlength{\rightskip}{0pt plus 5cm}function C\-S\-M\-B\-V\-::\-Set\-R\-F\-Output (
+\begin{DoxyParamCaption}
+\item[{in}]{R\-S, }
+\item[{in}]{State}
+\end{DoxyParamCaption}
+)}}\label{class_c_s_m_b_v_a4e2bf2f6e9a782439dc5dc0915ee29ff}
+
+
+Set the R\-F output O\-N/\-O\-F\-F. 
+
+Example\-: S\-M\-B\-V1.\-Set\-R\-F\-Output('O\-N'); 
+\begin{DoxyParams}{Parameters}
+{\em State} & String O\-N/\-O\-F\-F \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_c_s_m_b_v_8m}{C\-S\-M\-B\-V.\-m}\end{DoxyCompactItemize}

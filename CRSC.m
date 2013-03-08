@@ -1,54 +1,55 @@
-%*
-%* @file
-%* @author  Vladimir Dneprov <vvdneprov@gmail.com>
-%* Moscow Power Engineering Institute
-%*
-%* @section LICENSE
-%*
-%* This program is free software; you can redistribute it and/or
-%* modify it under the terms of the GNU General Public License as
-%* published by the Free Software Foundation; either version 2 of
-%* the License, or (at your option) any later version.
-%*
-%* This program is distributed in the hope that it will be useful, but
-%* WITHOUT ANY WARRANTY; without even the implied warranty of
-%* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-%* General Public License for more details at
-%* http://www.gnu.org/copyleft/gpl.html
-%*
-%* @section DESCRIPTION
-%*
-%* Class for Rohde&Schwarz RSC attenuator
-%* Features:
-%* 1) Set up attenuation
+%> @file CRSC.m
+%> @author  Vladimir Dneprov <vvdneprov@gmail.com>
+%> Moscow Power Engineering Institute
+%>
+%> @section LICENSE
+%>
+%> This program is free software; you can redistribute it and/or
+%> modify it under the terms of the GNU General Public License as
+%> published by the Free Software Foundation; either version 2 of
+%> the License, or (at your option) any later version.
+%>
+%> This program is distributed in the hope that it will be useful, but
+%> WITHOUT ANY WARRANTY; without even the implied warranty of
+%> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+%> General Public License for more details at
+%> http://www.gnu.org/copyleft/gpl.html
+%>
+%> @section DESCRIPTION
+%> 
+%> Class for Rohde&Schwarz RSC attenuator\n
+%> Features:\n
+%> 1) Set up attenuation
 
-
+%> @brief Class for Rohde&Schwarz RSC attenuator
 classdef CRSC < handle
-    %CRSC Class for Rohde&Schwarz RSC attenuator
-    
+        
     properties
-        Instr % Pointer of TCP/IP connection
-        Attenuation % Attenuation dB
+        %> Pointer of TCP/IP connection
+        Instr 
+        %> Attenuation dB
+        Attenuation 
     end
     
     methods
         
         
-        %*Consturctor of this class
-        %*
-        %*This is constructor of RSC control class
-        %*Example: RSC3 = CRSC;
-        %*
-        %*@return RS Object of this class
+        %> @brief Consturctor of this class
+        %>
+        %> This is constructor of RSC control class\n
+        %> Example: RSC3 = CRSC;
+        %>
+        %> @return RS Object of this class
         function RS = CRSC
             
         end
         
-        %*Connect to unit by local network
-        %*
-        %*@param IP String IP-address of measurement unit
-        %*@param port Port for TCP/IP connection, usually 5025
-        %*@return Status Is 0 - fail; 1 - ok.
+        %> @brief Connect to unit by local network
+        %>
+        %> Example: RSC3.SetConnection('192.168.1.58', 5025);
+        %> @param IP String IP-address of measurement unit
+        %> @param port Port for TCP/IP connection, usually 5025
+        %> @return Status Is 0 - fail; 1 - ok.
         function Status = SetConnection(RS, IP, port)
             Status = 0;
             RS.Instr = tcpip(IP, port);
@@ -67,18 +68,20 @@ classdef CRSC < handle
             end
         end
         
-        %*Close connection and return to manual control
-        %*
-        %*@return Status Returns a status of 0 when the close operation is successful. Otherwise, it returns -1
+        %> @brief Close connection and return to manual control
+        %>
+        %> Example: RSC3.CloseConnection;
+        %> @return Status Returns a status of 0 when the close operation is successful. Otherwise, it returns -1
         function Status = CloseConnection(RS)
             fprintf(RS.Instr,'&GTL');
             Status = fclose(RS.Instr);
         end
         
-        %*Send SCPI command to RSC
-        %*
-        %*@param strCommand String of SCPI command
-        %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
+        %> @brief Send SCPI command to RSC
+        %>
+        %> Example: RSC3.SendCommand('*RST');
+        %> @param strCommand String of SCPI command
+        %> @return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
         function [Status] = SendCommand(RS, strCommand)
             Status = 0;
             % Check number of input args
@@ -108,11 +111,12 @@ classdef CRSC < handle
             Status = 1;
         end
         
-        %*Send request for answer
-        %*
-        %*@param strCommand String of SCPI command
-        %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
-        %*@return Result Returns an answer of FSV
+        %> @brief Send request for answer
+        %>
+        %> Example: RSC3.SendQuery('*IDN?');
+        %> @param strCommand String of SCPI command
+        %> @return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
+        %> @return Result Returns an answer of FSV
         function [Status, Result] = SendQuery(RS, strCommand)
             Status = 0;
             Result = '';
@@ -147,10 +151,11 @@ classdef CRSC < handle
             Status = 1;
         end
         
-        %*Get information about instrument
-        %*
-        %*@return IDN String information about instrument
-        %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
+        %> @brief Get information about instrument
+        %>
+        %> Example: RSC3.GetIDN;
+        %> @return IDN String information about instrument
+        %> @return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
         function [Status, IDN] = GetIDN(RS)
             Status = 0;
             IDN = '';
@@ -161,9 +166,10 @@ classdef CRSC < handle
             Status = 1;
         end
         
-        %*Preset instrument and clear errors log
-        %*
-        %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
+        %> @brief Preset instrument and clear errors log
+        %>
+        %> Example: RSC3.Preset;
+        %> @return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
         function [Status] = Preset(RS)
             Status = 0;
             [Stat] = RS.SendCommand('*RST; *CLS');
@@ -177,9 +183,10 @@ classdef CRSC < handle
             Status = 1;
         end
         
-        %*Check errors in RSC
-        %*
-        %*@return Err Returns Err = 1 instrument error occured, 0 no error
+        %> @brief Check errors in RSC
+        %>
+        %> Example: RSC3.QueryError;
+        %> @return Err Err = 1 instrument error occured, 0 no error
         function [Err] = QueryError(RS)
             Result = '1';
             Counter = 0;
@@ -200,10 +207,11 @@ classdef CRSC < handle
             end
         end
         
-        %*Set the attenuation
-        %*
-        %*@param ATT attenuation dB
-        %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
+        %> @brief Set the attenuation
+        %>
+        %> Example: RSC3.SetAttenuation(30);
+        %> @param ATT attenuation dB
+        %> @return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
         function [Status] = SetAttenuation(RS, ATT)
             Status = 0;
             [Stat] = RS.SendCommand(sprintf('ATT1:ATT %.2f', ATT));

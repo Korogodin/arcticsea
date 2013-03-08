@@ -1,56 +1,60 @@
-%*
-%* @file
-%* @author  Vladimir Dneprov <vvdneprov@gmail.com>  
-%* Moscow Power Engineering Institute
-%* 
-%* @section LICENSE
-%*
-%* This program is free software; you can redistribute it and/or
-%* modify it under the terms of the GNU General Public License as
-%* published by the Free Software Foundation; either version 2 of
-%* the License, or (at your option) any later version.
-%*
-%* This program is distributed in the hope that it will be useful, but
-%* WITHOUT ANY WARRANTY; without even the implied warranty of
-%* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-%* General Public License for more details at
-%* http://www.gnu.org/copyleft/gpl.html
-%*
-%* @section DESCRIPTION
-%*
-%* Class for Rohde&Schwarz FSV signal & spectrum analyzers
-%* Features:
-%* 1) Power measurement in the given bandwidth
-%* 2) Setup center frequency of the spectrum analysis
-%* 3) Setup bandwidth of the spectrum analysis 
+%> @file CFSV.m
+%> @author  Vladimir Dneprov <vvdneprov@gmail.com>  
+%> Moscow Power Engineering Institute
+%> 
+%> @section LICENSE
+%>
+%> This program is free software; you can redistribute it and/or
+%> modify it under the terms of the GNU General Public License as
+%> published by the Free Software Foundation; either version 2 of
+%> the License, or (at your option) any later version.
+%>
+%> This program is distributed in the hope that it will be useful, but
+%> WITHOUT ANY WARRANTY; without even the implied warranty of
+%> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+%> General Public License for more details at
+%> http://www.gnu.org/copyleft/gpl.html
+%>
+%> @section DESCRIPTION
+%>
+%> Class for Rohde&Schwarz FSV signal & spectrum analyzers\n
+%> Features:\n
+%> 1) Power measurement in the given bandwidth\n
+%> 2) Setup center frequency of the spectrum analysis\n
+%> 3) Setup bandwidth of the spectrum analysis\n 
 
+%> @brief Class for Rohde&Schwarz FSV signal & spectrum analyzers
 classdef CFSV < handle
-    %CFSV Class for Rohde&Schwarz FSV signal & spectrum analyzers
+    
     
     properties
-        Instr % Pointer of TCP/IP connection
-        Span % Band for spectrum analysis
-        CenterFreq % Central frequency for spectrum analysis
+        %> Pointer of TCP/IP connection
+        Instr
+        %> Band for spectrum analysis
+        Span 
+        %> Central frequency for spectrum analysis
+        CenterFreq 
     end
     
     methods
 
 
-        %*Consturctor of this class
-        %*
-        %*This is constructor of FSV control class
-        %*Example: FSV3 = CFSV;
-        %*
-        %*@return RS Object of this class
+        %> @brief Consturctor of this class
+        %>
+        %> This is constructor of FSV control class\n
+        %> Example: FSV3 = CFSV;
+        %>
+        %> @return RS Object of this class
         function RS = CFSV
             
         end
         
-        %*Connect to unit by local network
-        %*
-        %*@param IP String IP-address of measurement unit
-        %*@param port Port for TCP/IP connection, usually 5025
-        %*@return Status Is 0 - fail; 1 - ok.
+        %> @brief Connect to unit by local network
+        %>
+        %> Example: FSV3.SetConnection('192.168.1.100', 5025);
+        %> @param IP String IP-address of measurement unit
+        %> @param port Port for TCP/IP connection, usually 5025
+        %> @return Status Is 0 - fail; 1 - ok.
         function Status = SetConnection(RS, IP, port)
             Status = 0;
             RS.Instr = tcpip(IP, port);
@@ -69,18 +73,20 @@ classdef CFSV < handle
             end
         end
         
-        %*Close connection and return to manual control
-        %*
-        %*@return Status Returns a status of 0 when the close operation is successful. Otherwise, it returns -1
+        %> @brief Close connection and return to manual control
+        %>
+        %> Example: FSV3.CloseConnection;
+        %> @return Status Returns a status of 0 when the close operation is successful. Otherwise, it returns -1
         function Status = CloseConnection(RS)
             fprintf(RS.Instr,'&GTL');
             Status = fclose(RS.Instr);
         end
         
-        %*Send SCPI command to FSV
-        %*
-        %*@param strCommand String of SCPI command
-        %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
+        %> @brief Send SCPI command to FSV
+        %>
+        %> Example: FSV3.SendCommand('*RST');
+        %> @param strCommand String of SCPI command
+        %> @return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
         function [Status] = SendCommand(RS, strCommand)
             Status = 0;
             % Check number of input args
@@ -110,11 +116,12 @@ classdef CFSV < handle
             Status = 1;
         end
         
-        %*Send request for answer
-        %*
-        %*@param strCommand String of SCPI command
-        %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
-        %*@return Result Returns an answer of FSV
+        %> @brief Send request for answer
+        %>
+        %> Example: FSV3.SendQuery('*IDN?');
+        %> @param strCommand String of SCPI command
+        %> @return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
+        %> @return Result Returns an answer of FSV
         function [Status, Result] = SendQuery(RS, strCommand)
             Status = 0;
             Result = '';
@@ -149,10 +156,11 @@ classdef CFSV < handle
             Status = 1; 
         end
         
-        %*Get information about instrument
-        %*
-        %*@return IDN String information about instrument
-        %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
+        %> @brief Get information about instrument
+        %> 
+        %> Example: FSV3.GetIDN;
+        %> @return IDN String information about instrument
+        %> @return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
         function [Status, IDN] = GetIDN(RS)
             Status = 0;
             IDN = '';
@@ -163,9 +171,10 @@ classdef CFSV < handle
             Status = 1;
         end
         
-        %*Preset instrument and clear errors log
-        %*
-        %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
+        %> @brief Preset instrument and clear errors log
+        %>
+        %> Example: FSV3.Preset;
+        %> @return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
         function [Status] = Preset(RS)
             Status = 0;
             [Stat] = RS.SendCommand('*RST; *CLS');
@@ -179,9 +188,10 @@ classdef CFSV < handle
             Status = 1;
         end
         
-        %*Check errors in FSV
-        %*
-        %*@return Err Returns Err = 1 instrument error occured, 0 no error 
+        %> @brief Check errors in FSV
+        %>
+        %> Example: FSV3.QueryError;
+        %> @return Err Err = 1 instrument error occured, 0 no error 
         function [Err] = QueryError(RS)
             Result = '1';
             Counter = 0;
@@ -202,10 +212,12 @@ classdef CFSV < handle
             end
         end
         
-        %*Set the center frequency of the spectrum analysis
-        %*
-        %*@param Freq Central frequency string 1GHz or float 1.11E9 (Hz)
-        %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
+        %> @brief Set the center frequency of the spectrum analysis
+        %>
+        %> Example:\n FSV3.SetCenterFreq('1GHz');\n
+        %> FSV3.SetCenterFreq(1E9);
+        %> @param Freq Central frequency string 1GHz or float 1.11E9 (Hz)
+        %> @return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
         function [Status] = SetCenterFreq(RS, Freq)
             Status = 0;
             if (ischar(Freq))
@@ -223,10 +235,12 @@ classdef CFSV < handle
             Status = 1;
         end
         
-        %*Set bandwidth of the spectrum analysis
-        %*
-        %*@param Span String 1MHz or float 1.1E6
-        %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
+        %> @brief Set bandwidth of the spectrum analysis
+        %>
+        %> Example:\n FSV3.SetSpan('1MHz');\n
+        %> FSV3.SetSpan(1E6);
+        %> @param Span String 1MHz or float 1.1E6
+        %> @return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
         function [Status] = SetSpan(RS, Span)
             Status = 0;
             if (ischar(Span))
@@ -244,11 +258,13 @@ classdef CFSV < handle
             Status = 1;
         end
         
-        %*Measure power in given bandwith
-        %*
-        %*@param Bandwidth String 1MHz or float 1.123E6 (Hz)
-        %*@return measure Power in bandwith, dBm
-        %*@return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
+        %> @brief Measure power in given bandwith
+        %>
+        %> Example:\n FSV3.PowerMeasure('10MHz');\n
+        %> FSV3.PowerMeasure(1E7);
+        %> @param Bandwidth String 1MHz or float 1.123E6 (Hz)
+        %> @return measure Power in bandwith, dBm
+        %> @return Status Returns a status of 1 when the operation is successful. Otherwise, it returns 0
         function [Status, measure] = PowerMeasure(RS, Bandwidth)
             Status = 0;
             if (ischar(Bandwidth))
