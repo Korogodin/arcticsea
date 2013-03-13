@@ -122,6 +122,9 @@ classdef CReceiver < handle
         function GetSolutionStatus(RCV)
             while(1)
                 answer = RecieveString(RCV);
+                if numel(answer) < 10
+                    return;
+                end
                 if strcmp(answer(1:6),'$GNGSA')||strcmp(answer(1:6),'$GPGSA')
                     sol = answer(10);
                     switch sol

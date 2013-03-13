@@ -65,7 +65,7 @@ classdef CSMBV < handle
             
             fopen(RS.Instr);
             if  strcmp(get(RS.Instr,'Status'),'open')
-                fprintf('SMBV:Connection OK');
+                fprintf('SMBV:Connection OK\n');
                 Status = 1;
             else
                 fprintf('SMBV:Connection Problem');

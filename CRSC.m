@@ -61,7 +61,7 @@ classdef CRSC < handle
             
             fopen(RS.Instr);
             if  strcmp(get(RS.Instr,'Status'),'open')
-                fprintf('RSC:Connection OK');
+                fprintf('RSC:Connection OK\n');
                 Status = 1;
             else
                 fprintf('RSC:Connection Problem');

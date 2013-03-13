@@ -66,7 +66,7 @@ classdef CFSV < handle
             
             fopen(RS.Instr);
             if  strcmp(get(RS.Instr,'Status'),'open')
-                fprintf('FSV:Connection OK');
+                fprintf('FSV:Connection OK\n');
                 Status = 1;
             else
                 fprintf('FSV:Connection Problem');
@@ -244,12 +244,12 @@ classdef CFSV < handle
         function [Status] = SetSpan(RS, Span)
             Status = 0;
             if (ischar(Span))
-                [Stat] = RS.SendCommand(['FREQ:CENT ' Span]);
+                [Stat] = RS.SendCommand(['FREQ:SPAN ' Span]);
                 if ( Stat == 0)
                     return;
                 end
             else
-                [Stat] = RS.SendCommand(sprintf('FREQ:CENT %.5f',Span));
+                [Stat] = RS.SendCommand(sprintf('FREQ:SPAN %.5f',Span));
                 if ( Stat == 0)
                     return;
                 end
@@ -290,7 +290,7 @@ classdef CFSV < handle
             if ( Stat == 0)
                 return;
             end
-            [m, measure] = FSV.SendQuery('CALC:MARK:FUNC:POW:RES? CPOW');
+            [m, measure] = RS.SendQuery('CALC:MARK:FUNC:POW:RES? CPOW');
             if (m == 0 || result(1)~='1'),
                 return;
             end

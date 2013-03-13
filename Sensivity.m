@@ -1,74 +1,70 @@
 SMBV = CSMBV;
 Rec = CReceiver;
 
-%установка соединения с SMBV
+%соединение с SMBV
 [Stat] = SMBV.SetConnection('192.168.1.22',5025);
 if (Stat == 0)
     error('Connection problem')
 end
-
-%сброс настроек SMBV в дефолтные
+%сброс настроек SMBV в дефолтные, очистка лога ошибок
 [Stat] = SMBV.Preset;
 if (Stat == 0)
     error('Error')
 end
-
-%запрос модели/серийного номера
-[Stat, result] = SMBV.SendQuery('*IDN?');
+%синхронизация
+[status, result] = SMBV.SendQuery('*OPC?');
+if (status == 0 || result(1)~='1')
+    return; 
+end
+%запрос модели, серийного номера
+[Stat, result] = SMBV.GetIDN;
 if (Stat == 0)
     error('Error')
 end
 disp(result);
-
-%проверка на системные ошибки
+%проверка системных ошибок
 [status, result] = SMBV.SendQuery('SYST:SERR?');
 if (result(1) ~= '0' || status == 0 )
 disp (['*** Instrument error : ' result]);
 return;
 end
-
-%начальный уровень мощности для каждого эксперимента
-StartLevel = -111;
-
-%запуск имитации спутников
-[Stat] = SMBV.SetGPS(4);
+%начальные настройки эксперимента
+StartLevel = -95; % стартовая мощность сигнала
+%запуск имитации сигнала GPS
+[Stat] = SMBV.SetGPS(6);
 if (Stat == 0)
     error('Error')
 end
-
-%установка мощности сигнала
+%установка стартовой мощности
 [Stat] = SMBV.SetLevel(StartLevel);
 if (Stat == 0)
     error('Error')
 end
-
-%включение RF выхода
-[Stat] = SMBV.SetRFOutput('ON');
+[Stat] = SMBV.SendCommand('OUTP ON');
 if (Stat == 0)
     error('Error')
 end
 
-%настройка соединения с приемником
+%Настройка соединения с приемником
 Rec.SerialConfig('COM6',115200);
-
-%установка соединения с приемником
+%Соединение с приемником
 Stat = Rec.SerialConnect;
 if (Stat == 0)
     error('Serial: connection problem')
 end
-
-%перезагрузка приемника, начало отсчета времени нахождения на данной мощности
+%Перезагрузка приемника, запуск отсчета времени на даннй мощности
 Rec.Reset;
-tin_thislevel  = tic;
+pause(70);
+tin_thislevel = tic;
 
-%шаг мощности, другие параметры эксперимента
-LevelStep = 1; PauseOnLevel = 90;
+%Параметры эксперимента: шаг изменения мощности, ожидание на мощности
+LevelStep = 1; PauseOnLevel = 30;
 HaveFix = 0;
 k = 1;
 RecIsDead5sec = 0;
 RecOkOnLastStep = 0;
 Pow_arr = cell(1,1);
-p = 0;
+p = 1;
 m = 0;
 
 %цикл эксперимента
@@ -81,23 +77,26 @@ while (1)
         HaveFix = 1;
         if (toc(tin_thislevel) > PauseOnLevel)
             LastOkLevel = SMBV.Level;
-            p = p + 1;
             Pow_arr{p,1} = [LastOkLevel 1];
-            if (LastOkLevel <= -111 && LastOkLevel >= -128) 
-                LevelStep = 6;
-            elseif (LastOkLevel == -129)
+            p = p + 1;
+            if (LastOkLevel <= -95 && LastOkLevel >= -118) 
+                LevelStep = 8;
+            elseif (LastOkLevel == -119)
                 LevelStep = 2;
-            elseif (LastOkLevel <= -130 && LastOkLevel >= -160)
+            elseif (LastOkLevel <= -120 && LastOkLevel >= -135)
                 LevelStep = 0.5;
             end
-            SMBV.SetLevel(LastOkLevel - LevelStep);
+            Stat = SMBV.SetLevel(LastOkLevel - LevelStep);
+            if (Stat == 0)
+                error('SMBV error')
+            end
             tin_thislevel = tic;
         end
-    elseif (Rec.FixType == 1 && RecOkOnLastStep == 1 )
+    elseif ((Rec.FixType == 1 || Rec.FixType == 2) && RecOkOnLastStep == 1 )
         DeathTime = tic;
     end
    
-    if (Rec.FixType == 1 && HaveFix == 1 && RecOkOnLastStep == 0 )
+    if ((Rec.FixType == 1 || Rec.FixType ==2) && HaveFix == 1 && RecOkOnLastStep == 0 )
     if ( toc(DeathTime) > 5 )
         RecIsDead5sec = 1;
     else
@@ -105,7 +104,7 @@ while (1)
     end
     end
     
-    if (Rec.FixType == 1)
+    if (Rec.FixType == 1 || Rec.FixType == 2)
         RecOkOnLastStep = 0;
     end
     
@@ -114,16 +113,18 @@ while (1)
         k = k + 1;
         Pow_arr{p,1} = [(LastOkLevel - LevelStep) 0];
         p = p + 1;
-        file = [num2str(m) 'newpower.mat'];
+        file = [num2str(m) 'MSHUpower.mat'];
         save(file, 'Pow_arr');
         m = m + 1;
+        Rec.Reset;
         SMBV.SetLevel(StartLevel);
         HaveFix = 0;
         RecOkOnLastStep = 0;
         RecIsDead5sec = 0;
-        tin_thislevel  = tic;
-        Rec.Reset;
         toc(DeathTime);
+        pause(70);
+        tin_thislevel  = tic;
+               
     end
   
 end
