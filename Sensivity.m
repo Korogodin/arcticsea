@@ -11,11 +11,6 @@ end
 if (Stat == 0)
     error('Error')
 end
-%синхронизация
-[status, result] = SMBV.SendQuery('*OPC?');
-if (status == 0 || result(1)~='1')
-    return; 
-end
 %запрос модели, серийного номера
 [Stat, result] = SMBV.GetIDN;
 if (Stat == 0)
@@ -40,7 +35,7 @@ end
 if (Stat == 0)
     error('Error')
 end
-[Stat] = SMBV.SendCommand('OUTP ON');
+[Stat] = SMBV.SetRFOutput('ON');
 if (Stat == 0)
     error('Error')
 end
