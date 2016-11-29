@@ -76,9 +76,9 @@ classdef CSMBV < handle
         %> 
         %> Example: SMBV1.CloseConnection;
         %> @return Status Returns a status of 0 when the close operation is successful. Otherwise, it returns -1
-        function Status = CloseConnection(RS)
+        function CloseConnection(RS)
             fprintf(RS.Instr,'&GTL');
-            Status = fclose(RS.Instr);
+            fclose(RS.Instr);
         end
         
         %> @brief Send SCPI command to SMBV
